@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>Comisiones</title></head>
+<body>
+    <h2>Reporte de Comisiones</h2>
+    <table border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Total Ventas</th>
+            <th>Comisión</th>
+        </tr>
+        {% for c in comision %}
+        <tr>
+            <td>{{ c.nombre }} {{ c.apellido }}</td>
+            <td>${{ "%.2f"|format(c.total_ventas) }}</td>
+            <td>${{ "%.2f"|format(c.comision) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
