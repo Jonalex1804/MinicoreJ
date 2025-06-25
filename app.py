@@ -8,7 +8,7 @@ app = Flask(__name__, template_folder='template')
 
 # Configuración de base de datos
 app.config['SECRET_KEY'] = 'clave123'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/minicore'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///minicore.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -108,4 +108,4 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         insertar_datos_de_prueba()
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
